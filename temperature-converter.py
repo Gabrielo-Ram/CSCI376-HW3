@@ -39,9 +39,9 @@ def slider_Conversion():
 
 with ui.card().classes("w-screen h-screen p-6 shadow-xl mx-auto mt-10 rounded-xl bg-gray-100"):
     # w-100: Set element width to be fixed at 100
-    # p-6: Adds padding equivlane to 6 units on all sides of the element
+    # p-6: Adds padding equivalent to 6 units on all sides of the element
     # shadow-xl: Adds a shadow below the designated element
-    # mx-auto: Adds automatic margins only on the left and right sides of the element; essentially centering the element in the middle of the screeen. 
+    # mx-auto: Adds automatic margins only on the left and right sides of the element; essentially centering the element in the middle of the screen. 
     # mt-10: Adds a margin of 10 units to the top of the element
     # rounded-xl: Makes the corners of the card rounded. 
     ui.label("Temperature Converter").classes("text-2xl font-bold text-accent mb-4 mx-auto")
@@ -50,12 +50,13 @@ with ui.card().classes("w-screen h-screen p-6 shadow-xl mx-auto mt-10 rounded-xl
     # text-accent: Changes the font color to the color designated under accent in ui.colors()
     # mb-4: Adds a margin of 4 units below the given element
     with ui.row().classes("mx-auto"):
-        input_field = ui.input("Enter Temperature").props('type="number"').classes("mb-4 p-2 mx-auto text-lg border rounded")
+        with ui.card().classes("w-64"):
+            input_field = ui.input("Enter Temperature").props('type="number"').classes("mb-4 p-2 mx-auto text-lg border rounded")
         #Second slider input field
-        input_field2 = ui.slider(min=0, max=100, value=50, on_change=lambda e: slider_Conversion())
-        ui.label("Selected temperature is:").classes("text-lg")
-        ui.label().bind_text_from(input_field2, 'value').classes("text-lg font-bold text-accent")
-        ui.label("°").classes("text-lg")
+        with ui.card().classes("w-64"):
+            input_field2 = ui.slider(min=-30, max=150, value=50, on_change=lambda e: slider_Conversion())
+            ui.label("Selected temperature is (°):").classes("text-lg")
+            ui.label().bind_text_from(input_field2, 'value').classes("text-lg font-bold text-accent mx-auto")
     # w-full: Stretches the input field element so that its width matches the width of its container element
     # border: Adds a small border to the element
     # rounded: Makes the corners of the element slightly rounded
@@ -63,7 +64,7 @@ with ui.card().classes("w-screen h-screen p-6 shadow-xl mx-auto mt-10 rounded-xl
     convert_button = ui.button("Convert", on_click=convert).classes("text-white font-bold py-2 px-4 rounded mx-auto")
     # text-white: Changes the font color inside the element to white
     # py-2: Adds vertical padding to the element by 2 units
-    # px-4: Adds horiztonal padding to the element by 4 units.
+    # px-4: Adds horizontal padding to the element by 4 units.
     result_label = ui.label("").classes("text-lg mt-4 mx-auto")
 
 ui.run()
